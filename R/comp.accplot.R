@@ -1,6 +1,6 @@
 #' Accumulation of Occurrences Plot
 #'
-#' Compare the occurrence-accumulation curves \insertRef{LeavingAreaReceiving}{sdmTools} of different SDM/ENMs for a single species
+#' Compare the occurrence-accumulation curves \insertCite{LeavingAreaReceiving}{sdmTools} of different SDM/ENMs for a single species
 #'
 #' @author Laura Jiménez
 #'
@@ -85,7 +85,7 @@
 #'                           mods.names = c('svm', 'maxent', 'bioclim', 'domain'), alpha = 0.05)
 #' }
 #' @references
-#'     \insertAllCited{}
+#' \insertRef{LeavingAreaReceiving}{sdmTools}
 #'
 comp.accplot <- function(mods,nocc,ncells,xrange=c(0,ncells),sp.name,mods.names,alpha){
   # number of models to compare

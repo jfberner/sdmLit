@@ -1,6 +1,6 @@
 #' Plot Frequency Ensemble
 #'
-#' This function aims to reproduce the exact plotting theme and configurations as in \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}. The function takes the output from sdm_frequency_ensemble() and plots it in those configurations. ggplot2 is used. Othewise the output is simply a rasterStack and can be plotted in any other preferred way.
+#' This function aims to reproduce the exact plotting theme and configurations as in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}. The function takes the output from sdm_frequency_ensemble() and plots it in those configurations. ggplot2 is used. Othewise the output is simply a rasterStack and can be plotted in any other preferred way.
 #'
 #' @param freq_object RasterStack, output from sdm_to_freqEnsemble() function, plotted with ggplot2.
 #'
@@ -25,7 +25,7 @@
 #' teste <- sdm_to_freqEnsemble(model, preds, c('charinus'))
 #' frequency_ensemble_plot(teste) }
 #' @references
-#'     \insertAllCited{}
+#' \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
 #'
 
 frequency_ensemble_plot <- function(freq_object){

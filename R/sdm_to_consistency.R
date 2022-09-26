@@ -1,6 +1,6 @@
 #' Build Consistency Maps from sdm::prediction() output
 #'
-#' This function builds consistency maps from a set of environmental layers and suitability maps, following Morales\insertCite{InputMattersMatter}{sdmTools} (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
+#' This function builds consistency maps from a set of environmental layers and suitability maps, following  \insertCite{InputMattersMatter;textual}{sdmTools} (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
 #'
 #' @param preds RasterStack, output from sdm::predict() function.
 #' @param layer Character or Interger. Layer ID to be used in plotting.

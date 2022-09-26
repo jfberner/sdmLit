@@ -1,6 +1,6 @@
 #' Accumulation of Occurrences Analysis and Plots
 #'
-#' Function to evaluate Ecological Niche Models by the Accumulation of Occurrences of each algorithm \insertRef{LeavingAreaReceiving}{sdmTools}.
+#' Function to evaluate Ecological Niche Models by the Accumulation of Occurrences of each algorithm \insertCite{LeavingAreaReceiving}{sdmTools}.
 #'
 #' @author Laura Jiménez
 #'
@@ -76,7 +76,7 @@
 #'           width=8, height=8, units="in", res=300);dev.off()
 #' }
 #' @references
-#'     \insertAllCited{}
+#' \insertRef{LeavingAreaReceiving}{sdmTools}
 #'
 accum.occ <- function(sp.name,output.mod,occ.pnts,null.mod,conlev=0,bios=0){
   # Sort the points according to the suitability calculated by the ENM model (column 3 from mxnt.pns)

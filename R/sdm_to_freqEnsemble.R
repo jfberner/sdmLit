@@ -1,21 +1,19 @@
-# --------------------------------------------------#
-# Ensemble by Frequency
-#
-#
-#
-# First version: 14 September 2022
-# Author: João Frederico Berner
-# --------------------------------------------------#
-
 #' Frequency Ensemble from sdm::sdm() and sdm::predict()
 #'
-#'  This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertRef{dasilveiraFutureClimateChange2021}{sdmTools}.
+#'  This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools}.
 #'
 #' @param model Model object as output from sdm() function or written/read with sdm::read.sdm().
-#' @param preds Prediction Object Output, with two observations: first, for it to have species names and algorithm names in the layer names, you have to run  ```names(p_occ) <- p_occ@z$fullname ``` and second, you have to save (and later read it) it with the terra package to retain layer names ```p_occ_stack <- raster::stack(p_occ) ; p_occ_spatraster <- terra::rast(p_occ) ; names(p_occ_spatraster) <- names(p_occ_stack) ; terra::writeRaster(x = p_occ_spatraster, filename = 'data/processed/final-model-build/predictions/predictions.present-terraStd.tif', overwrite = TRUE)```
+#' @param preds Prediction Object Output, with two observations: first, for it to have species names and
+#'  algorithm names in the layer names, you have to run  ```names(p_occ) <- p_occ@z$fullname ``` and second,
+#'  you have to save (and later read it) it with the terra package to retain layer names
+#'  ```p_occ_stack <- raster::stack(p_occ) ; ```
+#'  ```p_occ_spatraster <- terra::rast(p_occ) ; ```
+#'  ```names(p_occ_spatraster) <- names(p_occ_stack) ; ```
+#'  ```terra::writeRaster(x = p_occ_spatraster, ```
+#'  ```                   filename = 'data/processed/final-model-build/predictions/predictions.present-terraStd.tif', overwrite = TRUE)```
 #' @param species Character. Names of the species as they appear in layer names.
 #'
-#' @return A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  Sobral-Souza, Francini & Lima-Ribeiro (2015), or Da Silveira et al. (2021) for details.
+#' @return A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools} for details.
 #' @export
 #'
 #' @import tidyverse
@@ -33,7 +31,9 @@
 #' preds <- raster::stack(pocc)
 #' teste <- sdm_to_freqEnsemble(model, preds, c('charinus')) }
 #' @references
-#'     \insertAllCited{}
+#' \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
+#' \insertRef{dasilveiraFutureClimateChange2021}{sdmTools}
+#'
 #'
 sdm_to_freqEnsemble <- function(model, preds, species){
   evaluation <- sdm::getEvaluation(x = model, p = preds, wtest = 'test.dep', species = species, index = T, stat = c('AUC', 'COR', 'TSS', 'threshold'), opt = 2) # opt = 2 = max(se + sp)
