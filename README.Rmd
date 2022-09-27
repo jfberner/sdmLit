@@ -1,5 +1,7 @@
 ---
 output: github_document
+bibliography: inst/REFERENCES.bib
+csl: inst/apa-old-doi-prefix.csl
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -14,11 +16,17 @@ knitr::opts_chunk$set(
 ```
 
 # sdmTools
+## Author: João Frederico Berner
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of sdmTools is to ... I'll fill all of this tomorrow :)
+The goal of sdmTools is to allow easy implementation of methods not implemented in the sdm package, using the standard outputs of the sdm:: functions. The methods are all described in the literature, and are usually not compiled in any single package, which leads to very long coding and implementing sessions. The author felt ENM analyses and mapping currently sparsed in the literature could be centralized in a single package.
+
+There are three currently working "branches" in the package. Namely, 1) Boyce Index @hirzelEvaluatingAbilityHabitat2006, 2) consistency/congruence maps @morales-barberoInputMattersMatter2019a and 3) Accumulation of Occurrences Curve @jimenezLeavingAreaReceiving2020a.
+
+Below, I do my best to explain when/why use each of these and give examples of usage with the standard outputs from the sdm package, mainly from sdm() and predict().
 
 ## Installation
 
