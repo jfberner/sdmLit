@@ -37,5 +37,6 @@ teste <- sdm_to_freqEnsemble(model, preds, c('charinus')) }
 }
 \references{
 \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
+
 \insertRef{dasilveiraFutureClimateChange2021}{sdmTools}
 }
