@@ -15,7 +15,7 @@ LazyData: true
 Imports: 
   Rdpack(>= 2.4),
   ggplot2 (>= 3.3.6),
-  raster (<= 3.5-15),
+  raster (>= 3.5-15),
   tidyverse (>= 1.3.2),
   sdm (>= 1.1-8),
   climateStability (>= 0.1.3),

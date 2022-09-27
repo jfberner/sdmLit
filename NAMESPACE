@@ -3,6 +3,7 @@
 export(accum.occ)
 export(comp.accplot)
 export(frequency_ensemble_plot)
+export(sdm_to_boyceIndex)
 export(sdm_to_consistency)
 export(sdm_to_freqEnsemble)
 export(sdm_to_occ.pnts)
