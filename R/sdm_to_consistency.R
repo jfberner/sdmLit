@@ -1,11 +1,11 @@
 #' Build Consistency Maps from sdm::prediction() output
 #'
-#' This function builds consistency maps from a set of environmental layers and suitability maps, following  \insertCite{InputMattersMatter;textual}{sdmTools} (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
+#' This function builds consistency maps from a set of environmental layers and suitability maps, following  \insertCite{morales-barberoInputMattersMatter2019a}{sdmTools} (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
 #'
 #' @param preds RasterStack, output from sdm::predict() function.
 #' @param layer Character or Interger. Layer ID to be used in plotting.
 #'
-#' @return RasterStack with Consistency Map imposed on the original congruence map from \insertCite{InputMattersMatter}{sdmTools}.
+#' @return RasterStack with Consistency Map imposed on the original congruence map from \insertCite{morales-barberoInputMattersMatter2019a}{sdmTools}.
 #' @export
 #'
 #' @import climateStability
@@ -23,7 +23,7 @@
 #' consMap <- sdm_to_consistency(preds, 1)
 #' }
 #' @references
-#' \insertRef{InputMattersMatter}{sdmTools}
+#' \insertRef{morales-barberoInputMattersMatter2019a}{sdmTools}
 #'
 sdm_to_consistency <- function(preds, layer){
   suitability <- preds[[layer]]

@@ -21,10 +21,10 @@ you have to save (and later read it) it with the terra package to retain layer n
 \item{species}{Character. Names of the species as they appear in layer names.}
 }
 \value{
-A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools} for details.
+A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools} for details.
 }
 \description{
-This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools}.
+This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools}.
 }
 \examples{
 \dontrun{

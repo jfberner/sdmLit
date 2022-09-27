@@ -21,7 +21,7 @@ sdm_to_output.mods(env, algorithms, predict_object, long, lat)
 Returns a list of dataframes as long as the number of algorithms passed in 'algorithms ='. Each dataframe is in the output.mod format required by the accum.occ function and contains the information of one algorithm.
 }
 \description{
-This function takes the output from the sdm::predict() function, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the output.mod format required by the accum.occ() function from \insertCite{LeavingAreaReceiving}{sdmTools}.
+This function takes the output from the sdm::predict() function, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the output.mod format required by the accum.occ() function from \insertCite{jimenezLeavingAreaReceiving2020a}{sdmTools}.
 }
 \examples{
 \dontrun{ # DO NOT RUN
@@ -50,7 +50,7 @@ out.preds <- sdm_to_output.mods(env = env.pres, long = 'x',lat = 'y',
           }
 }
 \references{
-\insertRef{LeavingAreaReceiving}{sdmTools}
+\insertRef{jimenezLeavingAreaReceiving2020a}{sdmTools}
 }
 \author{
 João Frederico Berner

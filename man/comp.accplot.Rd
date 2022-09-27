@@ -33,7 +33,7 @@ comp.accplot(
 Plot comparing the accumulation of occurrences of each algorithm.
 }
 \description{
-Compare the occurrence-accumulation curves \insertCite{LeavingAreaReceiving}{sdmTools} of different SDM/ENMs for a single species
+Compare the occurrence-accumulation curves \insertCite{jimenezLeavingAreaReceiving2020a}{sdmTools} of different SDM/ENMs for a single species
 }
 \examples{
 \dontrun{
@@ -100,7 +100,7 @@ model_comp <- comp.accplot(mods = aocc_list,
 }
 }
 \references{
-\insertRef{LeavingAreaReceiving}{sdmTools}
+\insertRef{jimenezLeavingAreaReceiving2020a}{sdmTools}
 }
 \author{
 Laura Jiménez

@@ -2,7 +2,7 @@
 #'
 #' @author João Frederico Berner
 #'
-#' @description This function takes the output from the sdm::predict() function, along with the used occurrence data used in model build, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the occ.pnts format required by the accum.occ() function from \insertCite{LeavingAreaReceiving}{sdmTools}.
+#' @description This function takes the output from the sdm::predict() function, along with the used occurrence data used in model build, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the occ.pnts format required by the accum.occ() function from \insertCite{jimenezLeavingAreaReceiving2020a}{sdmTools}.
 #'
 #' @param env RasterStack used as newdata= in sdm::predict() function
 #' @param occ SpatialPointsDataFrame used in sdm::sdmData() function
@@ -41,7 +41,7 @@
 #' }
 #'
 #' @references
-#' \insertRef{LeavingAreaReceiving}{sdmTools}
+#' \insertRef{jimenezLeavingAreaReceiving2020a}{sdmTools}
 #'
 sdm_to_occ.pnts <- function(env, occ, algorithms, predict_object){
   algorithms <- as.list(algorithms)

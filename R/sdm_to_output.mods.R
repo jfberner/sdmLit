@@ -2,7 +2,7 @@
 #'
 #' @author João Frederico Berner
 #'
-#' @description This function takes the output from the sdm::predict() function, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the output.mod format required by the accum.occ() function from \insertCite{LeavingAreaReceiving}{sdmTools}.
+#' @description This function takes the output from the sdm::predict() function, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the output.mod format required by the accum.occ() function from \insertCite{jimenezLeavingAreaReceiving2020a}{sdmTools}.
 #'
 #' @param env RasterStack used as newdata= in sdm::predict() function
 #' @param long String. How the long variable is called in your output from sdm::predict(). Example: long = 'x'
@@ -42,7 +42,7 @@
 #'                                 predict_object = pocc)
 #'           }
 #' @references
-#' \insertRef{LeavingAreaReceiving}{sdmTools}
+#' \insertRef{jimenezLeavingAreaReceiving2020a}{sdmTools}
 #'
 
 sdm_to_output.mods <- function(env, algorithms, predict_object, long, lat){

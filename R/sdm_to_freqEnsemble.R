@@ -1,6 +1,6 @@
 #' Frequency Ensemble from sdm::sdm() and sdm::predict()
 #'
-#'  This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools}.
+#'  This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools}.
 #'
 #' @param model Model object as output from sdm() function or written/read with sdm::read.sdm().
 #' @param preds Prediction Object Output, with two observations: first, for it to have species names and
@@ -13,7 +13,7 @@
 #'  ```                   filename = 'data/processed/final-model-build/predictions/predictions.present-terraStd.tif', overwrite = TRUE)```
 #' @param species Character. Names of the species as they appear in layer names.
 #'
-#' @return A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools} for details.
+#' @return A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools} for details.
 #' @export
 #'
 #' @import tidyverse

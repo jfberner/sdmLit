@@ -24,11 +24,13 @@ A RasterStack of global-scale bioclimatic congruence map to analyse environmenta
 congruence
 }
 \description{
-Map of bioclimatic congruence (congruence.grd) from \insertCite{InputMattersMatter}{sdmTools}.
+Map of bioclimatic congruence (congruence.grd) from \insertCite{morales-barberoInputMattersMatter2019a}{sdmTools}.
 }
 \references{
-\insertRef{InputMattersMatter}{sdmTools}
+\insertRef{morales-barberoInputMattersMatter2019a}{sdmTools}
+
 \insertRef{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools}
+
 \insertRef{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}
 }
 \keyword{datasets}
