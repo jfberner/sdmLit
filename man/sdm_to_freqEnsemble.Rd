@@ -9,15 +9,22 @@ sdm_to_freqEnsemble(model, preds, species)
 \arguments{
 \item{model}{Model object as output from sdm() function or written/read with sdm::read.sdm().}
 
-\item{preds}{Prediction Object Output, with two observations: first, for it to have species names and algorithm names in the layer names, you have to run  \code{names(p_occ) <- p_occ@z$fullname } and second, you have to save (and later read it) it with the terra package to retain layer names \verb{p_occ_stack <- raster::stack(p_occ) ; p_occ_spatraster <- terra::rast(p_occ) ; names(p_occ_spatraster) <- names(p_occ_stack) ; terra::writeRaster(x = p_occ_spatraster, filename = 'data/processed/final-model-build/predictions/predictions.present-terraStd.tif', overwrite = TRUE)}}
+\item{preds}{Prediction Object Output, with two observations: first, for it to have species names and
+algorithm names in the layer names, you have to run  \code{names(p_occ) <- p_occ@z$fullname } and second,
+you have to save (and later read it) it with the terra package to retain layer names
+\code{p_occ_stack <- raster::stack(p_occ) ; }
+\code{p_occ_spatraster <- terra::rast(p_occ) ; }
+\code{names(p_occ_spatraster) <- names(p_occ_stack) ; }
+\verb{terra::writeRaster(x = p_occ_spatraster, }
+\verb{                   filename = 'data/processed/final-model-build/predictions/predictions.present-terraStd.tif', overwrite = TRUE)}}
 
 \item{species}{Character. Names of the species as they appear in layer names.}
 }
 \value{
-A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  Sobral-Souza, Francini & Lima-Ribeiro (2015), or Da Silveira et al. (2021) for details.
+A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools} for details.
 }
 \description{
-This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertRef{dasilveiraFutureClimateChange2021}{sdmTools}.
+This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015;textual}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021;textual}{sdmTools}.
 }
 \examples{
 \dontrun{
@@ -29,6 +36,6 @@ preds <- raster::stack(pocc)
 teste <- sdm_to_freqEnsemble(model, preds, c('charinus')) }
 }
 \references{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{\\insertAllCited\{\}
-}\if{html}{\out{</div>}}
+\insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
+\insertRef{dasilveiraFutureClimateChange2021}{sdmTools}
 }

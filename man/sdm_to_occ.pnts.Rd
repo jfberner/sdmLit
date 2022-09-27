@@ -19,7 +19,7 @@ sdm_to_occ.pnts(env, occ, algorithms, predict_object)
 Returns a list of dataframes as long as the number of algorithms passed in 'algorithms ='. Each dataframe is in the occ.pnts format required by the accum.occ function and contains the information of one algorithm.
 }
 \description{
-This function takes the output from the sdm::predict() function, along with the used occurrence data used in model build, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the occ.pnts format required by the accum.occ() function from \insertRef{LeavingAreaReceiving}{sdmTools}.
+This function takes the output from the sdm::predict() function, along with the used occurrence data used in model build, and environmental data used in predict() and makes a list of data.frames, one data.frame for each algorithm, in the occ.pnts format required by the accum.occ() function from \insertCite{LeavingAreaReceiving}{sdmTools}.
 }
 \examples{
 \dontrun{
@@ -49,8 +49,7 @@ occ.pnts <- sdm_to_occ.pnts(env = env.pres, occ = occ_train,
 
 }
 \references{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{\\insertAllCited\{\}
-}\if{html}{\out{</div>}}
+\insertRef{LeavingAreaReceiving}{sdmTools}
 }
 \author{
 João Frederico Berner

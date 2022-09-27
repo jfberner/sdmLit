@@ -12,10 +12,10 @@ sdm_to_consistency(preds, layer)
 \item{layer}{Character or Interger. Layer ID to be used in plotting.}
 }
 \value{
-RasterStack with Consistency Map imposed on the original congruence map from \insertRef{InputMattersMatter}{sdmTools}.
+RasterStack with Consistency Map imposed on the original congruence map from \insertCite{InputMattersMatter}{sdmTools}.
 }
 \description{
-This function builds consistency maps from a set of environmental layers and suitability maps, following Morales-Barbero & Vega-Álvarez (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
+This function builds consistency maps from a set of environmental layers and suitability maps, following  \insertCite{InputMattersMatter;textual}{sdmTools} (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
 }
 \examples{
 \dontrun{
@@ -27,6 +27,5 @@ consMap <- sdm_to_consistency(preds, 1)
 }
 }
 \references{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{\\insertAllCited\{\}
-}\if{html}{\out{</div>}}
+\insertRef{InputMattersMatter}{sdmTools}
 }

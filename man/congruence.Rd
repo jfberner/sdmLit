@@ -5,7 +5,7 @@
 \alias{congruence}
 \title{Congruence Map}
 \format{
-A RasterStack of global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases \href{www.worldclim.org/version2}{WorldClim v. 2},MERRAclim (\insertRef{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools} , \insertRef{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}), \href{www.chelsa-climate.org}{CHELSA}, and ocean databases \href{www.marspec.org}{MARSPEC} and \href{www.bio-oracle.org}{Bio-ORACLE v. 2.0}:
+A RasterStack of global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases \href{www.worldclim.org/version2}{WorldClim v. 2},MERRAclim (\insertCite{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools} , \insertCite{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}), \href{www.chelsa-climate.org}{CHELSA}, and ocean databases \href{www.marspec.org}{MARSPEC} and \href{www.bio-oracle.org}{Bio-ORACLE v. 2.0}:
 \describe{
 \item{\code{class}}{RasterLayer}
 \item{\code{dimensions}}{1080, 2160, 2332800  (nrow, ncol, ncell)}
@@ -24,9 +24,11 @@ A RasterStack of global-scale bioclimatic congruence map to analyse environmenta
 congruence
 }
 \description{
-Map of bioclimatic congruence (congruence.grd) from \insertRef{InputMattersMatter}{sdmTools}.
+Map of bioclimatic congruence (congruence.grd) from \insertCite{InputMattersMatter}{sdmTools}.
 }
 \references{
-\insertAllCited{}
+\insertRef{InputMattersMatter}{sdmTools}
+\insertRef{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools}
+\insertRef{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}
 }
 \keyword{datasets}
