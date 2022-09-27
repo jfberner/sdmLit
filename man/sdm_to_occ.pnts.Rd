@@ -41,7 +41,7 @@ p_occ <- predict(m_occ, newdata = envpres, # new data is the environment in whic
 
 
 occ.pnts <- sdm_to_occ.pnts(env = env.pres, occ = occ_train,
-                            algorithms = c('svm', 'maxent', 'rf', 'brt', 'domain'),
+                            algorithms = c('svm', 'maxent', 'bioclim', 'domain'),
                             predict_object = p_pres)
 }
 
