@@ -34,12 +34,9 @@
 #'                  filename = 'output/from/predict/function.tif',
 #'                    mean = T, prj = T, overwrite = T, nc = 4)
 #'
-#' env.pres <- terra::rast(output/from/predict/function.tif)
-#' env.pres %>% raster::stack()
-#'
-#' out.preds <- sdm_to_output.mods(env = env.pres, long = 'x',lat = 'y',
+#' out.preds <- sdm_to_output.mods(env = envpres, long = 'x',lat = 'y',
 #'                                 algorithms = c('svm', 'maxent','bioclim','domain'),
-#'                                 predict_object = pocc)
+#'                                 predict_object = p_occ)
 #'           }
 #' @references
 #' \insertRef{jimenezLeavingAreaReceiving2020a}{sdmTools}
