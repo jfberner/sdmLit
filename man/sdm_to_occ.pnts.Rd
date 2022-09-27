@@ -39,8 +39,6 @@ p_occ <- predict(m_occ, newdata = envpres, # new data is the environment in whic
                  filename = 'output/from/predict/function.tif',
                    mean = T, prj = T, overwrite = T, nc = 4)
 
-env.pres <- terra::rast(output/from/predict/function.tif)
-env.pres \%>\% raster::stack()
 
 occ.pnts <- sdm_to_occ.pnts(env = env.pres, occ = occ_train,
                             algorithms = c('svm', 'maxent', 'rf', 'brt', 'domain'),
