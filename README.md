@@ -3,7 +3,7 @@
 
 # sdmTools
 
-## Author: João Frederico Berner
+#### Author: João Frederico Berner
 
 <!-- badges: start -->
 
@@ -18,10 +18,25 @@ coding and implementing sessions. The author felt ENM analyses and
 mapping currently sparsed in the literature could be centralized in a
 single package.
 
-There are three currently working “branches” in the package. Namely, 1)
-Boyce Index Hirzel, Le Lay, Helfer, Randin, & Guisan (2006), 2)
-consistency/congruence maps Morales-Barbero & Vega-Álvarez (2019) and 3)
-Accumulation of Occurrences Curve Jiménez & Soberón (2020).
+There are three currently working “branches/tools” in the package.
+Namely,
+
+1.  **Boyce Index** [(Hirzel, Le Lay, Helfer, Randin, & Guisan,
+    2006)](https://doi.org/10.1016/j.ecolmodel.2006.05.017) , with the
+    function `sdm_to_boyceIndex()`;
+2.  **Consistency/Congruence Maps** [(Morales-Barbero & Vega-Álvarez,
+    2019)](https://doi.org/10.1111/2041-210X.13124) with the function
+    `sdm_to_consistency()`. I intend to allow new congruence maps to be
+    created from a set of environmental predictors with a new function
+    in the near future, but for now only the original congruence map is
+    available;
+3.  **Accumulation of Occurrences Curve** [(Jiménez & Soberón,
+    2020)](https://doi.org/10.1111/2041-210X.13479) with the functions
+    `sdm_to_occ.pnts()` and `sdm_to_output.mods()`, to be passed onto
+    the original `accum.occ()`, and later `comp.accplot()`.
+4.  **Frequency Ensemble** [(Sobral-Souza, Francini, & Lima-Ribeiro,
+    2015)](https://doi.org/10.1016/j.ncon.2015.11.009) with functions
+    `sdm_to_freqEnsemble()` and `frequency_ensemble_plot()`.
 
 Below, I do my best to explain when/why use each of these and give
 examples of usage with the standard outputs from the sdm package, mainly
@@ -37,65 +52,166 @@ You can install the development version of sdmTools from
 devtools::install_github("jfberner/sdmTools")
 ```
 
-## Example
+## Examples
 
-This is a basic example which shows you how to solve a common problem:
+### Base Objects
+
+###### Disclaimer
+
+- The following are the basic objects that are going to be used in all
+  the examples. They are not meant to be fully reproducible, as species
+  data, variable and algorithm selection vary considerably and should be
+  picked according to each dataset and objectives. Instead, I intend to
+  briefly take the reader through the process of creating an ENM with
+  the sdm package solely for clarifying what each object is (or is
+  supposed to be).
+
+- Details on the nature and origin of the datasets should not be
+  important for the use of this package’s functions.
+
+- Mind that some lines of the code are a MUST if one’s to implement my
+  functions, and they are described as such.
+
+The **‘species’** I’m using here is going to be called ‘charinus’. It is
+not a species, but is a model from another project I have easy at hand.
+I will not be sharing the dataset. I have two datasets: one called
+`occ_train` (with model training data) and another called `occ_test`
+(with model test data, which includes absence records). These objects
+are SpatialPointsDataFrame(s).
+
+``` r
+# The following are shapefiles (.shp) being loaded:
+occ_train <- rgdal::readOGR('data/processed/shapefiles/train.shp')
+occ_test <- rgdal::readOGR('data/processed/shapefiles/test.shp')
+```
+
+``` r
+# As SpatialPointsDataFrame
+class(occ_train)
+#> [1] "SpatialPointsDataFrame"
+#> attr(,"package")
+#> [1] "sp"
+```
+
+**Climate Data** (predictors) are four uncorrelated bioclimatic
+variables from [BioClim v2.1](https://www.worldclim.org). In the code
+they’ll be called `envpres`, refferring to ‘present’ climate (average
+from 1970-2000, more on this on worldclim’s website linked above).
+
+``` r
+envpres <- dir(path = 'data/processed/envcropped/Present/', pattern = ".tif$", full.names = T)
+
+envpres <- raster::stack(envpres)
+```
+
+``` r
+class(envpres)
+#> [1] "RasterStack"
+#> attr(,"package")
+#> [1] "raster"
+```
+
+I’ll be using four **algorithms** in my all of the examples: SVM,
+MaxEnt, BioClim and Domain. References for those can be found in [e.g.
+Sobral-Souza et al. (2015)](https://doi.org/10.1016/j.ncon.2015.11.009),
+I will not go into details here.
+
+``` r
+# Saving algorithm list can make life easier, for at least a couple reasons: 
+# it retains the order in which they are modeled inside the sdm::sdm() function to be used in sdmTools functions, 
+# and it saves you from re-typing them everytime.
+
+algorithms <- c('svm', 'maxent', 'bioclim', 'domain') # order will be important
+```
+
+The **Model** will (naturally) be constructed using the sdm package.
+Details on sdm package usage can be found
+[here](https://www.youtube.com/watch?v=83dMS3bcjJM) in video format and
+[here](https://github.com/babaknaimi/sdm) is the github of the package.
+I won’t go into further, unnecessary details.
+
+First, we prepare the data:
+
+``` r
+d_occ <- sdm::sdmData(formula = charinus~., train=occ_train,
+                 predictors = envpres, bg = 18, # same number as occurrences
+                 method = 'eRandom') # Create sdmData object
+# eRandom = random in Environmental Space
+```
+
+Then we run the models:
+
+``` r
+m_occ <- sdm::sdm(formula = charinus~.,data = d_occ,
+              methods = algorithms,
+                           replication = c('bootstrapping'), n=5)
+```
+
+This `m_occ` object is our sdmModel object, and it’ll be often used.
+
+Finally, we **predict** using built models:
+
+``` r
+p_occ <- sdm::predict(m_occ, newdata = envpres, # new data is the environment in which we want to predict
+                 filename = 'data/processed/model-build/predictions/predictions.present-rasterStd.tif',
+                 prj = T, overwrite = T, nc = 7)
+
+# This creates a file in the specified folder BUT the file doesn't retain the layer names, which will be super important for us to distinguish among methods. To do so:
+```
+
+This will save the predictions as a raster file. However, **layer names
+WILL NOT BE RETAINED**. Not only is retaining layer names extremely
+important to implement the functions of sdmTools package, it will make
+it easier for the user/researcher to distinguish them later. **To retain
+them**, simply:
+
+``` r
+# The next line grabs the 'fullname' inside the p_occ object
+names(p_occ) <- p_occ@z$fullname # This is SUPER important. It ensure both SPECIES and ALGORITHM names are retained in layer names
+
+p_occ_stack <- raster::stack(p_occ) #convert rasterBrick to rasterStack
+p_occ_spatraster <- terra::rast(p_occ_stack) #convert rasterStack to SpatRaster
+names(p_occ_spatraster) <- names(p_occ_stack) #grab the names again, because in converting the terra::rast() function grabs the names from the .tif file that p_occ refers to.
+
+terra::writeRaster(x = p_occ_spatraster, 
+                    filename = 'data/processed/model-build/predictions/predictions.present-terraStd.tif',
+                    overwrite = TRUE) # Using terra package because it retains layer names
+```
+
+When you read your predictions raster file, make sure to so using the
+terra package and then converting it to a RasterStack to retain sdm
+package standards (not required, but I haven’t tested).
+
+``` r
+pocc <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-terraStd.tif')
+pocc <- raster::stack()
+```
+
+**Note:** there are now **two different prediction objects**, and they
+are **significantly different**. The object `p_occ` is the one
+originally obtained from the sdm::predict() function, and `pocc` is the
+one read from the terra package. Since is always best practice to have
+separate scripts for different steps in modelling **I’ll be using `pocc`
+for all functions from here on**.
+
+And these are all the objects we need to implement the functions of the
+sdmTools package: `occ_train`, `occ_test`, `envpres`, `m_occ` and
+`pocc`. The following sections will be examples of how to use the
+functions and a brief description, in my words, of when to use them.
+
+### Boyce Index
+
+The Boyce Index [Hirzel et al.
+(2006)](https://doi.org/10.1016/j.ecolmodel.2006.05.017) DOES THIS AND
+THAT AND SHOULD BE USED FOR CASES WHERE X. DONE FOR TODAY.
+
+Usage is as follows:
 
 ``` r
 library(sdmTools)
-#> Warning: libpodofo.so.0.9.8: não é possível abrir arquivo compartilhado: Arquivo
-#> ou diretório inexistente (GDAL error 1)
-
-#> Warning: libpodofo.so.0.9.8: não é possível abrir arquivo compartilhado: Arquivo
-#> ou diretório inexistente (GDAL error 1)
-#> Warning: libthrift-0.16.0.so: não é possível abrir arquivo compartilhado:
-#> Arquivo ou diretório inexistente (GDAL error 1)
-
-#> Warning: libthrift-0.16.0.so: não é possível abrir arquivo compartilhado:
-#> Arquivo ou diretório inexistente (GDAL error 1)
-#> Warning: libpodofo.so.0.9.8: não é possível abrir arquivo compartilhado: Arquivo
-#> ou diretório inexistente (GDAL error 1)
-
-#> Warning: libpodofo.so.0.9.8: não é possível abrir arquivo compartilhado: Arquivo
-#> ou diretório inexistente (GDAL error 1)
-#> Warning: libthrift-0.16.0.so: não é possível abrir arquivo compartilhado:
-#> Arquivo ou diretório inexistente (GDAL error 1)
-
-#> Warning: libthrift-0.16.0.so: não é possível abrir arquivo compartilhado:
-#> Arquivo ou diretório inexistente (GDAL error 1)
-#> Warning: replacing previous import 'dismo::points' by 'graphics::points' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'dplyr::union' by 'raster::union' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'dplyr::select' by 'raster::select' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'dplyr::intersect' by 'raster::intersect'
-#> when loading 'sdmTools'
-#> Warning: replacing previous import 'sdm::density' by 'stats::density' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'raster::weighted.mean' by
-#> 'stats::weighted.mean' when loading 'sdmTools'
-#> Warning: replacing previous import 'raster::predict' by 'stats::predict' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'raster::aggregate' by 'stats::aggregate'
-#> when loading 'sdmTools'
-#> Warning: replacing previous import 'dplyr::filter' by 'stats::filter' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'dplyr::lag' by 'stats::lag' when loading
-#> 'sdmTools'
-#> Warning: replacing previous import 'raster::quantile' by 'stats::quantile' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'raster::update' by 'stats::update' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'raster::tail' by 'utils::tail' when loading
-#> 'sdmTools'
-#> Warning: replacing previous import 'raster::stack' by 'utils::stack' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'raster::unstack' by 'utils::unstack' when
-#> loading 'sdmTools'
-#> Warning: replacing previous import 'raster::head' by 'utils::head' when loading
-#> 'sdmTools'
-## basic example code
+boyce.output <- sdm_to_boyceIndex(preds = pocc, layer = mean(1:5), occurrence = occ_test)
+# preds = pocc note that it is not p_occ, refer to the text above for the difference.
+# layer = mean(1:5) will take the mean of the first five layers, in this case the five SVM models
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
@@ -103,13 +219,6 @@ You can include R chunks like so:
 
 ``` r
 summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
 ```
 
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
@@ -120,10 +229,10 @@ example workflow can be found here:
 
 You can also embed plots, for example:
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
 In that case, don’t forget to commit and push the resulting figure
 files, so they display on GitHub and CRAN.
+
+# References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
 line-spacing="2">
@@ -153,6 +262,17 @@ Morales-Barbero, J., & Vega-Álvarez, J. (2019). Input matters matter:
 Bioclimatic consistency to map more reliable species distribution
 models. *Methods in Ecology and Evolution*, *10*(2), 212–224. doi:
 [10.1111/2041-210X.13124](https://doi.org/10.1111/2041-210X.13124)
+
+</div>
+
+<div id="ref-sobral-souzaSpeciesExtinctionRisk2015" class="csl-entry">
+
+Sobral-Souza, T., Francini, R. B., & Lima-Ribeiro, M. S. (2015). Species
+extinction risk might increase out of reserves: Allowances for
+conservation of threatened butterfly Actinote quadra (Lepidoptera:
+Nymphalidae) under global warming. *Natureza & Conservação*, *13*(2),
+159–165. doi:
+[10.1016/j.ncon.2015.11.009](https://doi.org/10.1016/j.ncon.2015.11.009)
 
 </div>
 
