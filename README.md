@@ -18,7 +18,7 @@ coding and implementing sessions. The author felt ENM analyses and
 mapping currently sparsed in the literature could be centralized in a
 single package.
 
-There are three currently working “branches/tools” in the package.
+There are four currently working “branches/tools” in the package.
 Namely,
 
 1.  **Boyce Index** [(Hirzel, Le Lay, Helfer, Randin, & Guisan,
@@ -26,17 +26,23 @@ Namely,
     function `sdm_to_boyceIndex()`;
 2.  **Consistency/Congruence Maps** [(Morales-Barbero & Vega-Álvarez,
     2019)](https://doi.org/10.1111/2041-210X.13124) with the function
-    `sdm_to_consistency()`. I intend to allow new congruence maps to be
-    created from a set of environmental predictors with a new function
-    in the near future, but for now only the original congruence map is
-    available;
+    `sdm_to_consistency()`. [Original source code
+    here](https://besjournals.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2F2041-210X.13124&file=mee313124-sup-0002-AppendixB_Rcode.R).
+    I intend to allow new congruence maps to be created from a set of
+    environmental predictors with a new function in the near future, but
+    for now only the [original congruence
+    map](https://doi.org/10.5061/dryad.6kv7k29) is available;
+    (authorization pending)
 3.  **Accumulation of Occurrences Curve** [(Jiménez & Soberón,
     2020)](https://doi.org/10.1111/2041-210X.13479) with the functions
     `sdm_to_occ.pnts()` and `sdm_to_output.mods()`, to be passed onto
-    the original `accum.occ()`, and later `comp.accplot()`.
+    the [original functions](https://github.com/LauraJim/SDM-hyperTest)
+    `accum.occ()`, and later `comp.accplot()`. (authorization pending)
 4.  **Frequency Ensemble** [(Sobral-Souza, Francini, & Lima-Ribeiro,
     2015)](https://doi.org/10.1016/j.ncon.2015.11.009) with functions
-    `sdm_to_freqEnsemble()` and `frequency_ensemble_plot()`.
+    `sdm_to_freqEnsemble()` and `frequency_ensemble_plot()`. The
+    approach is the same as in the paper, but the code I got from a
+    class I had with one of the authors (authorization pending).
 
 Below, I do my best to explain when/why use each of these and give
 examples of usage with the standard outputs from the sdm package, mainly
