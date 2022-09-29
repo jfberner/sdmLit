@@ -36,7 +36,8 @@ Namely,
 3.  **Accumulation of Occurrences Curve** [(Jiménez & Soberón,
     2020)](https://doi.org/10.1111/2041-210X.13479) with the functions
     `sdm_to_occ.pnts()` and `sdm_to_output.mods()`, to be passed onto
-    the original functions `accum.occ()`, and later `comp.accplot()`
+    the [original functions](https://github.com/LauraJim/SDM-hyperTest)
+    `accum.occ()`, and later `comp.accplot()`
     [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3981453.svg)](https://doi.org/10.5281/zenodo.3981453).
 4.  **Frequency Ensemble** [(Sobral-Souza, Francini, & Lima-Ribeiro,
     2015)](https://doi.org/10.1016/j.ncon.2015.11.009) with functions
@@ -207,23 +208,61 @@ functions and a brief description, in my words, of when to use them.
 
 ### Boyce Index
 
-The Boyce Index [Hirzel et al.
-(2006)](https://doi.org/10.1016/j.ecolmodel.2006.05.017) DOES THIS AND
-THAT AND SHOULD BE USED FOR CASES WHERE X. DONE FOR TODAY.
+The Continuous Boyce Index [Hirzel et al.
+(2006)](https://doi.org/10.1016/j.ecolmodel.2006.05.017) is a
+threshold-independent evaluator for models. It provides
+predicted-to-expected ratio curves that offer further insights into the
+model quality: robustness, habitat suitability resolution and deviation
+from randomness. This information helps reclassifying predicted maps
+into meaningful habitat suitability classes.
+
+When absence data are unreliable or unavailable, the model evaluation
+should be assessed for presences only. Two simple evaluators are the
+absolute validation index (AVI) and contrast validation index (CVI), but
+both rely on fixed thresholds. [Boyce, Vernier, Nielsen, & Schmiegelow
+(2002)](https://doi.org/10.1016/S0304-3800(02)00200-4) proposed a way to
+relieve somewhat the threshold constraint. Their method consists in
+partitioning the habitat suitability range into *b* classes (or bins),
+instead of only two. The main shortcoming of the Boyce index is its
+sensitivity to the number of suitability classes *b* and to their
+boundaries.
+
+To overcome this problem, [Hirzel et al.
+(2006)](https://doi.org/10.1016/j.ecolmodel.2006.05.017) derived a new
+evaluator based on a “moving window” of width W (say W = 0.1) instead of
+fixed classes.
+
+The continuous Boyce index is thus both a complement to usual evaluation
+of presence/absence models and a reliable measure of presence-only based
+predictions.
 
 Usage is as follows:
 
 ``` r
 library(sdmTools)
 boyce.output <- sdm_to_boyceIndex(preds = pocc, layer = mean(1:5), occurrence = occ_test)
-# preds = pocc note that it is not p_occ, refer to the text above for the difference.
+# preds = pocc NOTE that it is NOT p_occ, refer to the text above for the difference.
 # layer = mean(1:5) will take the mean of the first five layers, in this case the five SVM models
 ```
+
+The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply
+passes the arguments onto this function. Any additional arguments can be
+passed onto it and reading its help is strongly suggested (run
+`?ecospat::ecospat.boyce()` in R Console).
 
 # References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
 line-spacing="2">
+
+<div id="ref-boyceEvaluatingResourceSelection2002" class="csl-entry">
+
+Boyce, M. S., Vernier, P. R., Nielsen, S. E., & Schmiegelow, F. K. A.
+(2002). Evaluating resource selection functions. *Ecological Modelling*,
+*157*(2), 281–300. doi:
+[10.1016/S0304-3800(02)00200-4](https://doi.org/10.1016/S0304-3800(02)00200-4)
+
+</div>
 
 <div id="ref-hirzelEvaluatingAbilityHabitat2006" class="csl-entry">
 
