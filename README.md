@@ -252,6 +252,13 @@ passed onto it and reading its help is **strongly** suggested (run
 
 ### Consistency/Congruence Maps
 
+![congruence](man/figures/README-congruence.png)
+\[Caption\]\[congruence\] Global-scale bioclimatic congruence map to
+analyse environmental mismatches between recently updated bioclimatic
+databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim ( , ),
+[CHELSA](www.chelsa-climate.org), and ocean databases
+[MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org).
+
 # References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
