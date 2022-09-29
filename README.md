@@ -254,12 +254,12 @@ passed onto it and reading its help is **strongly** suggested (run
 
 ![Global-scale bioclimatic congruence map to analyse environmental
 mismatches between recently updated bioclimatic databases
-<a href="www.worldclim.org/version2">WorldClim v.2</a> , MERRAclim (C.
-Vega, Pertierra, & Olalla-Tárraga, 2017),
-<a href="www.chelsa-climate.org">CHELSA</a>, and ocean databases
-<a href="www.marspec.org">MARSPEC</a> and
-<a href="www.bio-oracle.org">Bio-ORACLE v.
-2.0</a>](%22inst/figures/README-congruence.png%22)
+<a href="www.worldclim.org/version2" >target=“WorldClim v.2”</a> ,
+MERRAclim (C. Vega, Pertierra, & Olalla-Tárraga, 2017),
+<a href="www.chelsa-climate.org" >target=“CHELSA”</a>, and ocean
+databases <a href="www.marspec.org">MARSPEC</a> and
+<a href="www.bio-oracle.org" >target=“Bio-ORACLE v.
+2.0”</a>](%22inst/figures/README-congruence.png%22)
 
 \[Caption\]\[inst/figures/README-congruence.png\] Global-scale
 bioclimatic congruence map to analyse environmental mismatches between
