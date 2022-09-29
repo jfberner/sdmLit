@@ -28,7 +28,7 @@
 sdm_to_consistency <- function(preds, layer){
   suitability <- preds[[layer]]
   suitability <- climateStability::rescale0to1(suitability)
-  congruence <- data("congruence")
+  congruence <- sdmTools::congruence
   congruencer<-resample(x=congruence, y=suitability, method="bilinear")
   # Bioclimatic consistency
 
@@ -37,13 +37,13 @@ sdm_to_consistency <- function(preds, layer){
 
 colmat<-function(nquantiles=10, upperleft="#be64ac", upperright="#3b4994", bottomleft="#e8e8e8", bottomright="#5ac8c8", xlab="x label", ylab="y label"){
     my.data<-seq(0,1,.01)
-    my.class<-classIntervals(my.data,n=nquantiles,style="quantile")
-    my.pal.1<-findColours(my.class,c(upperleft,bottomleft))
-    my.pal.2<-findColours(my.class,c(upperright, bottomright))
+    my.class<-classInt::classIntervals(my.data,n=nquantiles,style="quantile")
+    my.pal.1<-classInt::findColours(my.class,c(upperleft,bottomleft))
+    my.pal.2<-classInt::findColours(my.class,c(upperright, bottomright))
     col.matrix<-matrix(nrow = 101, ncol = 101, NA)
     for(i in 1:101){
       my.col<-c(paste(my.pal.1[i]),paste(my.pal.2[i]))
-      col.matrix[102-i,]<-findColours(my.class,my.col)}
+      col.matrix[102-i,]<-classInt::findColours(my.class,my.col)}
     plot(c(1,1),pch=19,col=my.pal.1, cex=0.5,xlim=c(0,1),ylim=c(0,1),frame.plot=F, xlab=xlab, ylab=ylab,cex.lab=1.3)
     for(i in 1:101){
       col.temp<-col.matrix[i-1,]
