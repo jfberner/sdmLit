@@ -252,7 +252,6 @@ passed onto it and reading its help is **strongly** suggested (run
 
 ### Consistency/Congruence Maps
 
-![congruence](man/figures/README-congruence.png)
 \[Caption\]\[congruence\] Global-scale bioclimatic congruence map to
 analyse environmental mismatches between recently updated bioclimatic
 databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim ( , ),

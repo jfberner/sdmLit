@@ -175,7 +175,14 @@ The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply passes the a
 
 ### Consistency/Congruence Maps
 
-![congruence](man/figures/README-congruence.png)
+```{r congruence, echo=FALSE, fig.align='center', fig.cap="Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases.", out.width="100%"}
+
+knitr::include_graphics(here::here("man/figures", "README-congruence.png"))
+
+```
+
+
+
 ![Caption][congruence] Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim (\insertCite{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools} , \insertCite{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}), [CHELSA](www.chelsa-climate.org), and ocean databases [MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org). 
 
 # References
