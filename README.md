@@ -36,8 +36,8 @@ Namely,
 3.  **Accumulation of Occurrences Curve** [(Jiménez & Soberón,
     2020)](https://doi.org/10.1111/2041-210X.13479) with the functions
     `sdm_to_occ.pnts()` and `sdm_to_output.mods()`, to be passed onto
-    the [original functions](https://github.com/LauraJim/SDM-hyperTest)
-    `accum.occ()`, and later `comp.accplot()`. (authorization pending)
+    the original functions `accum.occ()`, and later `comp.accplot()`
+    [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3981453.svg)](https://doi.org/10.5281/zenodo.3981453).
 4.  **Frequency Ensemble** [(Sobral-Souza, Francini, & Lima-Ribeiro,
     2015)](https://doi.org/10.1016/j.ncon.2015.11.009) with functions
     `sdm_to_freqEnsemble()` and `frequency_ensemble_plot()`. The
