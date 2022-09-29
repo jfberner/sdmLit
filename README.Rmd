@@ -171,6 +171,11 @@ boyce.output <- sdm_to_boyceIndex(preds = pocc, layer = mean(1:5), occurrence = 
 ```
 
 
-The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply passes the arguments onto this function. Any additional arguments can be passed onto it and reading its help is strongly suggested (run `?ecospat::ecospat.boyce()` in R Console).
+The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply passes the arguments onto this function. Any additional arguments can be passed onto it and reading its help is **strongly** suggested (run `?ecospat::ecospat.boyce()` in R Console).
+
+### Consistency/Congruence Maps
+
+
+
 
 # References
