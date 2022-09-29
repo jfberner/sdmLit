@@ -145,7 +145,7 @@ pocc <- raster::stack()
 
 And these are all the objects we need to implement the functions of the sdmTools package: `occ_train`, `occ_test`, `envpres`, `m_occ` and `pocc`. The following sections will be examples of how to use the functions and a brief description, in my words, of when to use them.
 
-```{r eval=T, echo=F,results=F}
+```{r eval=T, echo=F,results='markup'}
 pocc <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-all-algorithms.tif') # remember to read with terra:: to retain layer names
 pocc <- raster::stack(pocc) # and then turn them into RasterStacks
 m_occ <- sdm::read.sdm("data/processed/model-build/model-object/model.sdm")
@@ -175,14 +175,11 @@ The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply passes the a
 
 ### Consistency/Congruence Maps
 
-```{r congruence, echo=FALSE, fig.align='center', fig.cap="Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases.", out.width="100%"}
-
-knitr::include_graphics(here::here("man/figures", "README-congruence.png"))
-
-```
 
 
 
-![Caption][congruence] Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim (\insertCite{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools} , \insertCite{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}), [CHELSA](www.chelsa-climate.org), and ocean databases [MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org). 
+![Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases <a href="www.worldclim.org/version2">WorldClim v.2</a> , MERRAclim  [@c.vegaMERRAclimHighresolutionGlobal2017], <a href="www.chelsa-climate.org">CHELSA</a>, and ocean databases <a href="www.marspec.org">MARSPEC</a> and <a href="www.bio-oracle.org">Bio-ORACLE v. 2.0</a>]("inst/figures/README-congruence.png")
+
+![Caption][inst/figures/README-congruence.png] Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim (@c.vegaMERRAclimHighresolutionGlobal2017), [CHELSA](www.chelsa-climate.org), and ocean databases [MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org). 
 
 # References
