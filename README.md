@@ -317,7 +317,7 @@ sdmTools::sdm_to_consistency(preds = pocc,
 
 | <span style="display: inline-block; width:300px">Congruence Color-Codes for Map Legend</span> | <span style="display: inline-block; width:500px">Congruence/Suitability Bivariate Map</span> |
 |-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| ![](man/figures/README-unnamed-chunk-13-3.png)                                                | ![](man/figures/README-unnamed-chunk-13-2.png)                                               |
+| ![](man/figures/README-unnamed-chunk-13-3.png)                                                | ![](man/figures/README-unnamed-chunk-13-4.png)                                               |
 
 As you can see, there are two outputs from running this function. The
 first the congruence color-coded to be used by users as legend or
