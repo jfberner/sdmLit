@@ -3,7 +3,7 @@
 
 # sdmTools
 
-#### Author: João Frederico Berner
+## Author: João Frederico Berner
 
 <!-- badges: start -->
 
@@ -12,6 +12,20 @@
 
 Have any suggestions? Contact me on
 [Twitter](twitter.com/bernerfrederico) :)
+
+### Outline
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Examples](#examples)
+- [Base Objetcs For This Tutorial](#base-objects)
+- [Boyce Index](#boyce-index)
+- [Congruence Maps](#congruence-maps)
+- [Accumulation of Occurrences
+  Curve](#accumulation-of-occurrences-curve)
+- [Ensemble by Frequency](#ensemble-by-frequency)
+
+## Introduction
 
 The goal of sdmTools is to allow easy implementation of methods not
 implemented in the sdm package, using the standard outputs of the sdm::
@@ -258,9 +272,9 @@ passes the arguments onto this function. Any additional arguments can be
 passed onto it and reading its help is **strongly** suggested (run
 `?ecospat::ecospat.boyce()` in R Console).
 
-### Consistency/Congruence Maps
+### Congruence Maps
 
-The he lack of bioclimatic congruence (degree of agreement) between
+The lack of bioclimatic congruence (degree of agreement) between
 different databases is a main concern in distribution modelling and it
 is critical in single-source models, for which the database choice is
 decisive. In order to prevent unreliable predictions derived from
@@ -303,9 +317,9 @@ sdmTools::sdm_to_consistency(preds = pocc,
 # Here I'm using the first layer, which corresponds to an SVM model that ranges from 0.15 to 0.92 in its predictions.
 ```
 
-|     Congruence Color-Codes for Map Legend      |      Congruence/Suitability Bivariate Map      |
-|:----------------------------------------------:|:----------------------------------------------:|
-| ![](man/figures/README-unnamed-chunk-13-1.png) | ![](man/figures/README-unnamed-chunk-13-2.png) |
+| <span style="display: inline-block; width:300px">Congruence Color-Codes for Map Legend</span> | <span style="display: inline-block; width:500px">Congruence/Suitability Bivariate Map</span> |
+|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| ![](man/figures/README-unnamed-chunk-13-1.png)                                                | ![](man/figures/README-unnamed-chunk-13-2.png)                                               |
 
 As you can see, there are two outputs from running this function. The
 first the congruence color-coded to be used by users as legend or
@@ -433,7 +447,7 @@ For further details in the arguments of the functions above, I strongly
 suggest reading Jiménez & Soberón (2020) and referring to the links in
 the beggining of this section.
 
-### Consistency/Congruence Maps
+### Ensemble by Frequency
 
 # References
 
