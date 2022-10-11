@@ -34,7 +34,6 @@ Have any suggestions? Contact me on [Twitter](twitter.com/bernerfrederico) :)
 - [Congruence Maps](#congruence-maps)
 - [Accumulation of Occurrences Curve](#accumulation-of-occurrences-curve)
 - [Ensemble by Frequency](#ensemble-by-frequency)
-
 ## Introduction
 
 The goal of sdmTools is to allow easy implementation of methods not implemented in the sdm package, using the standard outputs of the sdm:: functions. The methods are all described in the literature, and are usually not compiled in any single package, which leads to very long coding and implementing sessions. The author felt ENM analyses and mapping currently sparsed in the literature could be centralized in a single package.
@@ -63,7 +62,6 @@ devtools::install_github("jfberner/sdmTools")
 ```
 
 ## Examples
-
 ### Base Objects
 
 ###### Disclaimer
@@ -337,5 +335,7 @@ Which should return a plot that looks something like:
 For further details in the arguments of the functions above, I strongly suggest reading @jimenezLeavingAreaReceiving2020a and referring to the links in the beggining of this section.
 
 ### Ensemble by Frequency
+
+I'll do this in another session. Almost done :)
 
 # References

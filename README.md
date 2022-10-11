@@ -23,9 +23,7 @@ Have any suggestions? Contact me on
 - [Congruence Maps](#congruence-maps)
 - [Accumulation of Occurrences
   Curve](#accumulation-of-occurrences-curve)
-- [Ensemble by Frequency](#ensemble-by-frequency)
-
-## Introduction
+- [Ensemble by Frequency](#ensemble-by-frequency) \## Introduction
 
 The goal of sdmTools is to allow easy implementation of methods not
 implemented in the sdm package, using the standard outputs of the sdm::
@@ -448,6 +446,8 @@ suggest reading Jiménez & Soberón (2020) and referring to the links in
 the beggining of this section.
 
 ### Ensemble by Frequency
+
+I’ll do this in another session. Almost done :)
 
 # References
 
