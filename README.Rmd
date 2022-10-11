@@ -23,6 +23,8 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+Have any suggestions? Contact me on [Twitter](twitter.com/bernerfrederico) :)
+
 The goal of sdmTools is to allow easy implementation of methods not implemented in the sdm package, using the standard outputs of the sdm:: functions. The methods are all described in the literature, and are usually not compiled in any single package, which leads to very long coding and implementing sessions. The author felt ENM analyses and mapping currently sparsed in the literature could be centralized in a single package.
 
 There are four currently working "branches/tools" in the package. Namely, 
@@ -176,10 +178,12 @@ The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply passes the a
 ### Consistency/Congruence Maps
 
 
+```{r eval=T, echo=FALSE, fig.cap="Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases WorldClim v.2, MERRAclim  [@c.vegaMERRAclimHighresolutionGlobal2017], CHELSA, and ocean databases MARSPEC and Bio-ORACLE v. 2.0"}
+knitr::include_graphics("man/figures/README-congruence.png")
+
+```
 
 
-![Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases <a href="www.worldclim.org/version2" >target="WorldClim v.2"</a> , MERRAclim  [@c.vegaMERRAclimHighresolutionGlobal2017], <a href="www.chelsa-climate.org" >target="CHELSA"</a>, and ocean databases <a href="www.marspec.org">MARSPEC</a> and <a href="www.bio-oracle.org" >target="Bio-ORACLE v. 2.0"</a>]("inst/figures/README-congruence.png")
 
-![Caption][inst/figures/README-congruence.png] Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim (@c.vegaMERRAclimHighresolutionGlobal2017), [CHELSA](www.chelsa-climate.org), and ocean databases [MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org). 
 
 # References

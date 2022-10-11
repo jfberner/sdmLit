@@ -10,6 +10,9 @@
 [![R-CMD-check](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+Have any suggestions? Contact me on
+[Twitter](twitter.com/bernerfrederico) :)
+
 The goal of sdmTools is to allow easy implementation of methods not
 implemented in the sdm package, using the standard outputs of the sdm::
 functions. The methods are all described in the literature, and are
@@ -252,21 +255,7 @@ passed onto it and reading its help is **strongly** suggested (run
 
 ### Consistency/Congruence Maps
 
-![Global-scale bioclimatic congruence map to analyse environmental
-mismatches between recently updated bioclimatic databases
-<a href="www.worldclim.org/version2" >target=“WorldClim v.2”</a> ,
-MERRAclim (C. Vega, Pertierra, & Olalla-Tárraga, 2017),
-<a href="www.chelsa-climate.org" >target=“CHELSA”</a>, and ocean
-databases <a href="www.marspec.org">MARSPEC</a> and
-<a href="www.bio-oracle.org" >target=“Bio-ORACLE v.
-2.0”</a>](%22inst/figures/README-congruence.png%22)
-
-\[Caption\]\[inst/figures/README-congruence.png\] Global-scale
-bioclimatic congruence map to analyse environmental mismatches between
-recently updated bioclimatic databases [WorldClim v.
-2](www.worldclim.org/version2),MERRAclim (C. Vega et al. (2017)),
-[CHELSA](www.chelsa-climate.org), and ocean databases
-[MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org).
+<img src="man/figures/README-congruence.png" alt="Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases WorldClim v.2, MERRAclim  [@c.vegaMERRAclimHighresolutionGlobal2017], CHELSA, and ocean databases MARSPEC and Bio-ORACLE v. 2.0" width="100%" />
 
 # References
 
@@ -279,16 +268,6 @@ Boyce, M. S., Vernier, P. R., Nielsen, S. E., & Schmiegelow, F. K. A.
 (2002). Evaluating resource selection functions. *Ecological Modelling*,
 *157*(2), 281–300. doi:
 [10.1016/S0304-3800(02)00200-4](https://doi.org/10.1016/S0304-3800(02)00200-4)
-
-</div>
-
-<div id="ref-c.vegaMERRAclimHighresolutionGlobal2017" class="csl-entry">
-
-C. Vega, G., Pertierra, L. R., & Olalla-Tárraga, M. Á. (2017).
-MERRAclim, a high-resolution global dataset of remotely sensed
-bioclimatic variables for ecological modelling. *Scientific Data*,
-*4*(1), 170078. doi:
-[10.1038/sdata.2017.78](https://doi.org/10.1038/sdata.2017.78)
 
 </div>
 
