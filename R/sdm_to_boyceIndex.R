@@ -14,11 +14,11 @@
 #'
 #' @examples
 #' occ_test <- rgdal::readOGR('data/processed/shapefiles/test.shp')
-#'
-#' pred_pres <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-all-algorithms.tif') # remember to read with terra:: to retain layer names
+#' occ <- as.data.frame(occ_test)
+#' pred_pres <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-terraStd.tif') # remember to read with terra:: to retain layer names
 #' pred_pres <- raster::stack(pred_pres) # and then turn them into RasterStacks
 #'
-#' teste <- sdm_to_boyceIndex(pred_pres, mean(2:5), occurrence[,2:3])
+#' teste <- sdm_to_boyceIndex(pred_pres, mean(2:5), occ[,2:3])
 #'
 #' @references
 #' \insertRef{hirzelEvaluatingAbilityHabitat2006}{sdmLit}
