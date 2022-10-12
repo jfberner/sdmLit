@@ -140,8 +140,9 @@ class(envpres)
 
 I’ll be using four **algorithms** in my all of the examples: SVM,
 MaxEnt, BioClim and Domain. References for those can be found in [e.g.
-Sobral-Souza et al. (2015)](https://doi.org/10.1016/j.ncon.2015.11.009),
-I will not go into details here.
+Sobral-Souza, Francini, et al.
+(2015)](https://doi.org/10.1016/j.ncon.2015.11.009), I will not go into
+details here.
 
 ``` r
 # Saving algorithm list can make life easier, for at least a couple reasons: 
@@ -396,7 +397,7 @@ dev.new() ; dev.control('enable') ; dev.off()
 # WARNING: Before running this next section of the script, make sure nothing
 # is plotted and no devices are open with dev.list()
 
-aocc_svm <- accum.occ(sp.name = 'charinus',
+aocc_svm <- sdmTools::accum.occ(sp.name = 'charinus',
                      output.mod = output.mod[[1]], # The index 1 here refers to the algorithm index, if you followed the exact same syntax so far, it should be the same index as in the 'algorithms' object
                      occ.pnts = occ.pnts[[1]], # Same observation as above
                      null.mod = "hypergeom",
@@ -431,7 +432,7 @@ And then, you can compare the performance of each algorithm using the
 `comp.aocc` function:
 
 ``` r
-model_comp <- comp.accplot(mods = aocc_list,
+model_comp <- sdmTools::comp.accplot(mods = aocc_list,
                           nocc = length(occ_train),
                           ncells = raster::ncell(envpres),
                           sp.name = 'Charinus',
@@ -442,12 +443,62 @@ Which should return a plot that looks something like:
 ![](man/figures/README-comp.aocc.png)
 
 For further details in the arguments of the functions above, I strongly
-suggest reading Jiménez & Soberón (2020) and referring to the links in
-the beggining of this section.
+suggest reading [Jiménez & Soberón
+(2020)](https://doi.org/10.1111/2041-210X.13479) and referring to the
+links in the beggining of this section and the
+[Introduction](#introduction).
 
 ### Ensemble by Frequency
 
-I’ll do this in another session. Almost done :)
+This method of ensembling is reasonably straightforward. A threshold is
+applied to suitability maps (predictions, here `pocc`), and then the
+frequency that each grid cell is predicted as presence is computed to
+obtain a consensual map from all algorithms. This can also be done for
+different GCMs, as long as they’re all stacked as layers of the same
+object. See examples of this approach in [Sobral-Souza, Lima-Ribeiro, &
+Solferini (2015)](https://doi.org/10.1007/s10682-015-9780-9), [Da
+Silveira, Vancine, Jahn, Pizo, & Sobral-Souza
+(2021)](https://doi.org/10.1093/ornithapp/duab006) and [Sobral-Souza,
+Francini, et al. (2015)](https://doi.org/10.1016/j.ncon.2015.11.009).
+
+Thresholds available in this package are the ones computed by the
+`sdm()` function, and these values are obtained directly by the
+`sdm::getEvaluation` function.
+
+In this package, I provide two functions for frequency ensembling. One
+computes the frequency map (`sdm_to_freqEnsemble()`) and the other one
+plots it in a reproducible style (`frequency_ensemble_plot()`). Of
+course, the plotting can be done by other means, as the output of the
+first function is a RasterStack.
+
+For this particular functions it is **extremely important** that both
+the name of the **species** and the **algorithm** name are present in
+each **layer** name. I explain thoroughly how to make sure this is true
+in the [Base Objects](#base-objects) part of this document.
+
+Usage is as follows:
+
+``` r
+freqE <- sdmTools::sdm_to_freqEnsemble(model = m_occ, preds =  pocc, species =  c('charinus'), threshold = 2)
+
+# Argument threshold: which parameter to use as threshold for binarizing the predictions. The possible value can be between 1 to 10 for "sp=se", "max(se+sp)", "min(cost)", "minROCdist", "max(kappa)", "max(ppv+npv)", "ppv=npv", "max(NMI)", "max(ccr)", "prevalence" criteria, respectively.
+```
+
+Which returns a RasterStack that can be plotted with this package using:
+
+``` r
+freqPlot <- sdmTools::frequency_ensemble_plot(freqE)
+
+freqPlot
+```
+
+Which should return something like:
+
+![](man/figures/README-freqEnsPlot.png)
+
+The good thing about using this second function is that it returns a
+ggplot object, and any further tinkering with the map can be done using
+ggplot syntax.
 
 # References
 
@@ -470,6 +521,16 @@ MERRAclim, a high-resolution global dataset of remotely sensed
 bioclimatic variables for ecological modelling. *Scientific Data*,
 *4*(1), 170078. doi:
 [10.1038/sdata.2017.78](https://doi.org/10.1038/sdata.2017.78)
+
+</div>
+
+<div id="ref-dasilveiraFutureClimateChange2021" class="csl-entry">
+
+Da Silveira, N. S., Vancine, M. H., Jahn, A. E., Pizo, M. A., &
+Sobral-Souza, T. (2021). Future climate change will impact the size and
+location of breeding and wintering areas of migratory thrushes in South
+America. *Ornithological Applications*, *123*(2), duab006. doi:
+[10.1093/ornithapp/duab006](https://doi.org/10.1093/ornithapp/duab006)
 
 </div>
 
@@ -536,6 +597,17 @@ conservation of threatened butterfly Actinote quadra (Lepidoptera:
 Nymphalidae) under global warming. *Natureza & Conservação*, *13*(2),
 159–165. doi:
 [10.1016/j.ncon.2015.11.009](https://doi.org/10.1016/j.ncon.2015.11.009)
+
+</div>
+
+<div id="ref-sobral-souzaBiogeographyNeotropicalRainforests2015a"
+class="csl-entry">
+
+Sobral-Souza, T., Lima-Ribeiro, M. S., & Solferini, V. N. (2015).
+Biogeography of Neotropical Rainforests: Past connections between Amazon
+and Atlantic Forest detected by ecological niche modeling. *Evolutionary
+Ecology*, *29*(5), 643–655. doi:
+[10.1007/s10682-015-9780-9](https://doi.org/10.1007/s10682-015-9780-9)
 
 </div>
 
