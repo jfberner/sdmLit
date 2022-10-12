@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jfberner/jfbpack/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-Have any suggestions? Contact me on [Twitter](twitter.com/bernerfrederico) :)
+Have any suggestions? Contact me on [Twitter](https://www.twitter.com/bernerfrederico) :)
 
 ### Outline
 - [Introduction](#introduction)
@@ -34,6 +34,7 @@ Have any suggestions? Contact me on [Twitter](twitter.com/bernerfrederico) :)
 - [Congruence Maps](#congruence-maps)
 - [Accumulation of Occurrences Curve](#accumulation-of-occurrences-curve)
 - [Ensemble by Frequency](#ensemble-by-frequency)
+
 ## Introduction
 
 The goal of sdmTools is to allow easy implementation of methods not implemented in the sdm package, using the standard outputs of the sdm:: functions. The methods are all described in the literature, and are usually not compiled in any single package, which leads to very long coding and implementing sessions. The author felt ENM analyses and mapping currently sparsed in the literature could be centralized in a single package.

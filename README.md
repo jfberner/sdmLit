@@ -11,7 +11,7 @@
 <!-- badges: end -->
 
 Have any suggestions? Contact me on
-[Twitter](twitter.com/bernerfrederico) :)
+[Twitter](https://www.twitter.com/bernerfrederico) :)
 
 ### Outline
 
@@ -23,7 +23,9 @@ Have any suggestions? Contact me on
 - [Congruence Maps](#congruence-maps)
 - [Accumulation of Occurrences
   Curve](#accumulation-of-occurrences-curve)
-- [Ensemble by Frequency](#ensemble-by-frequency) \## Introduction
+- [Ensemble by Frequency](#ensemble-by-frequency)
+
+## Introduction
 
 The goal of sdmTools is to allow easy implementation of methods not
 implemented in the sdm package, using the standard outputs of the sdm::
