@@ -163,7 +163,7 @@ pocc <- raster::stack()
 And these are all the objects we need to implement the functions of the sdmLit package: `occ_train`, `occ_test`, `envpres`, `m_occ` and `pocc`. The following sections will be examples of how to use the functions and a brief description, in my words, of when to use them.
 
 ```{r eval=F, echo=F,results='markup'}
-flpocc <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-all-algorithms.tif') # remember to read with terra:: to retain layer names
+pocc <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-all-algorithms.tif') # remember to read with terra:: to retain layer names
 pocc <- raster::stack(pocc) # and then turn them into RasterStacks
 m_occ <- sdm::read.sdm("data/processed/model-build/model-object/model.sdm")
 ```
@@ -187,6 +187,8 @@ boyce.output <- sdm_to_boyceIndex(preds = pocc, layer = mean(1:5), occurrence = 
 # layer = mean(1:5) will take the mean of the first five layers, in this case the five SVM models
 ```
 
+Which outputs a list with F.ratio, cor, and HS, and plots the CBI which should look something like this:
+![](man/figures/README-BoyceIndex.png)
 
 The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply passes the arguments onto this function. Any additional arguments can be passed onto it and reading its help is **strongly** suggested (run `?ecospat::ecospat.boyce()` in R Console).
 

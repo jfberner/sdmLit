@@ -262,6 +262,9 @@ boyce.output <- sdm_to_boyceIndex(preds = pocc, layer = mean(1:5), occurrence = 
 # layer = mean(1:5) will take the mean of the first five layers, in this case the five SVM models
 ```
 
+Which outputs a list with F.ratio, cor, and HS, and plots the CBI which
+should look something like this: ![](man/figures/README-BoyceIndex.png)
+
 The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply
 passes the arguments onto this function. Any additional arguments can be
 passed onto it and reading its help is **strongly** suggested (run
