@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# sdmTools
+# sdmLit 📚
 ## Author: João Frederico Berner
 
 <!-- badges: start -->
@@ -37,7 +37,7 @@ Have any suggestions? Contact me on [Twitter](https://www.twitter.com/bernerfred
 
 ## Introduction
 
-The goal of sdmTools is to allow easy implementation of methods not implemented in the sdm package, using the standard outputs of the sdm:: functions. The methods are all described in the literature, and are usually not compiled in any single package, which leads to very long coding and implementing sessions. The author felt ENM analyses and mapping currently sparsed in the literature could be centralized in a single package.
+The goal of sdmLit is to allow easy implementation of methods not implemented in the sdm package, using the standard outputs of the sdm:: functions. The methods are all described in the literature, and are usually not compiled in any single package, which leads to very long coding and implementing sessions. The author felt ENM analyses and mapping currently sparsed in the literature could be centralized in a single package.
 
 There are four currently working "branches/tools" in the package. Namely, 
 
@@ -55,11 +55,11 @@ Below, I do my best to explain when/why use each of these and give examples of u
 
 ## Installation
 
-You can install the development version of sdmTools from [GitHub](https://github.com/) with:
+You can install the development version of sdmLit from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("jfberner/sdmTools")
+devtools::install_github("jfberner/sdmLit")
 ```
 
 ## Examples
@@ -75,34 +75,34 @@ devtools::install_github("jfberner/sdmTools")
 
 The **'species'** I'm using here is going to be called 'charinus'. It is not a species, but is a model from another project I have easy at hand. I will not be sharing the dataset. I have two datasets: one called `occ_train` (with model training data) and another called `occ_test` (with model test data, which includes absence records). These objects are SpatialPointsDataFrame(s).
 
-```{r echo=T, eval=T, results='hide'}
+```{r echo=T, eval=F, results='hide'}
 # The following are shapefiles (.shp) being loaded:
 occ_train <- rgdal::readOGR('data/processed/shapefiles/train.shp')
 occ_test <- rgdal::readOGR('data/processed/shapefiles/test.shp')
 ```
 
-```{r eval=T}
+```{r eval=F}
 # As SpatialPointsDataFrame
 class(occ_train)
 ```
 
 **Climate Data** (predictors) are four uncorrelated bioclimatic variables from [BioClim v2.1](https://www.worldclim.org). In the code they'll be called `envpres`, refferring to 'present' climate (average from 1970-2000, more on this on worldclim's website linked above).
 
-```{r echo=T, eval=T, results='hide', warning=FALSE}
+```{r echo=T, eval=F, results='hide', warning=FALSE}
 envpres <- dir(path = 'data/processed/envcropped/Present/', pattern = ".tif$", full.names = T)
 
 envpres <- raster::stack(envpres)
 ```
 
-```{r eval=T}
+```{r eval=F}
 class(envpres)
 ```
 
 I'll be using four **algorithms** in my all of the examples: SVM, MaxEnt, BioClim and Domain. References for those can be found in [e.g. @sobral-souzaSpeciesExtinctionRisk2015](https://doi.org/10.1016/j.ncon.2015.11.009), I will not go into details here.
 
-```{r echo=T, eval=T, results='hide'}
+```{r echo=T, eval=F, results='hide'}
 # Saving algorithm list can make life easier, for at least a couple reasons: 
-# it retains the order in which they are modeled inside the sdm::sdm() function to be used in sdmTools functions, 
+# it retains the order in which they are modeled inside the sdm::sdm() function to be used in sdmLit functions, 
 # and it saves you from re-typing them everytime.
 
 algorithms <- c('svm', 'maxent', 'bioclim', 'domain') # order will be important
@@ -136,7 +136,7 @@ p_occ <- sdm::predict(m_occ, newdata = envpres, # new data is the environment in
 # This creates a file in the specified folder BUT the file doesn't retain the layer names, which will be super important for us to distinguish among methods. To do so:
 ```
 
-This will save the predictions as a raster file. However, **layer names WILL NOT BE RETAINED**. Not only is retaining layer names extremely important to implement the functions of sdmTools package, it will make it easier for the user/researcher to distinguish them later. **To retain them**, simply:
+This will save the predictions as a raster file. However, **layer names WILL NOT BE RETAINED**. Not only is retaining layer names extremely important to implement the functions of sdmLit package, it will make it easier for the user/researcher to distinguish them later. **To retain them**, simply:
 
 ```{r echo=T, results='hide'}
 # The next line grabs the 'fullname' inside the p_occ object
@@ -160,10 +160,10 @@ pocc <- raster::stack()
 
 **Note:** there are now **two different prediction objects**, and they are **significantly different**. The object `p_occ` is the one originally obtained from the sdm::predict() function, and `pocc` is the one read from the terra package. Since is always best practice to have separate scripts for different steps in modelling **I'll be using `pocc` for all functions from here on**.
 
-And these are all the objects we need to implement the functions of the sdmTools package: `occ_train`, `occ_test`, `envpres`, `m_occ` and `pocc`. The following sections will be examples of how to use the functions and a brief description, in my words, of when to use them.
+And these are all the objects we need to implement the functions of the sdmLit package: `occ_train`, `occ_test`, `envpres`, `m_occ` and `pocc`. The following sections will be examples of how to use the functions and a brief description, in my words, of when to use them.
 
-```{r eval=T, echo=F,results='markup'}
-pocc <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-all-algorithms.tif') # remember to read with terra:: to retain layer names
+```{r eval=F, echo=F,results='markup'}
+flpocc <- terra::rast(x = 'data/processed/model-build/predictions/predictions.present-all-algorithms.tif') # remember to read with terra:: to retain layer names
 pocc <- raster::stack(pocc) # and then turn them into RasterStacks
 m_occ <- sdm::read.sdm("data/processed/model-build/model-object/model.sdm")
 ```
@@ -181,7 +181,7 @@ The continuous Boyce index is thus both a complement to usual evaluation of pres
 Usage is as follows:
 
 ```{r example}
-library(sdmTools)
+library(sdmLit)
 boyce.output <- sdm_to_boyceIndex(preds = pocc, layer = mean(1:5), occurrence = occ_test)
 # preds = pocc NOTE that it is NOT p_occ, refer to the text above for the difference.
 # layer = mean(1:5) will take the mean of the first five layers, in this case the five SVM models
@@ -194,16 +194,16 @@ The sdm_to_boyceIndex relies on ecospat::ecospat.boyce() and simply passes the a
 
 The lack of bioclimatic congruence (degree of agreement) between different databases is a main concern in distribution modelling and it is critical in single-source models, for which the database choice is decisive. In order to prevent unreliable predictions derived from distorted input data, SDMs accuracy can be assessed by mapping model predictions according to a bioclimatic congruence measure derived from the comparison of multiple databases, which can be achieved with the bioclimatic consistency maps proposed by @morales-barberoInputMattersMatter2019a.
 
-In this package, we provide the congruence map generated by the original authors (image below). If you only need the dataset for plotting or any other reason, you can access it using `data(congruence)` or `sdmTools::congruence`, both will load the data to your R environment. This is not needed to plot your results using the method however, as explained below.
+In this package, we provide the congruence map generated by the original authors (image below). If you only need the dataset for plotting or any other reason, you can access it using `data(congruence)` or `sdmLit::congruence`, both will load the data to your R environment. This is not needed to plot your results using the method however, as explained below.
 
 ![](man/figures/README-congruence.png)
 <p style="text-align: center;">Global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases <strong>WorldClim v.2</strong> [@fickWorldClimNew1km2017], <strong>MERRAclim</strong>  [@c.vegaMERRAclimHighresolutionGlobal2017], <strong>CHELSA</strong> [@kargerClimatologiesHighResolution2017a], and ocean databases <strong>MARSPEC</strong> [@sbroccoMARSPECOceanClimate2013] and <strong>Bio-ORACLE v.2.0</strong> [@tybergheinBioORACLEGlobalEnvironmental2012]</p>
 
-The method consists in plotting your model predictions on top of this congruence map. The colors are coded in two axes, Habitat Suitability and Climatic Congruence, both ranging from zero to one. Note that if your model predictions do not range from 0 to 1, you should resample them to range between these values before running the `sdmTools::sdm_to_consistency()` function. Function usage is as follows, using the objects presented in the introduction of this document:
+The method consists in plotting your model predictions on top of this congruence map. The colors are coded in two axes, Habitat Suitability and Climatic Congruence, both ranging from zero to one. Note that if your model predictions do not range from 0 to 1, you should resample them to range between these values before running the `sdmLit::sdm_to_consistency()` function. Function usage is as follows, using the objects presented in the introduction of this document:
 
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 # There are only two arguments to this function, the prediction object and the layer you wish to plot onto the consistency map. 
-sdmTools::sdm_to_consistency(preds = pocc,
+sdmLit::sdm_to_consistency(preds = pocc,
                             layer = 1)
 # Here I'm using the first layer, which corresponds to an SVM model that ranges from 0.15 to 0.92 in its predictions.
 ```
@@ -231,11 +231,11 @@ This allows assignment of the performance of an algorithm that classifies presen
 To implement the [original functions](https://github.com/LauraJim/SDM-hyperTest) 
  `accum.occ()` and `comp.accplot()` [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3981453.svg)](https://doi.org/10.5281/zenodo.3981453), we need first to manipulate the sdm output objects to create the inputs required by the functions: `output.mods` and `occ.pnts`. To do so, simply use the functions:
  
-```{r eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+```{r eval=F, echo=TRUE, message=FALSE, warning=FALSE}
 # If you need help in the definition of the objects below, please refer back to the Introduction of this document.
-occ.pnts <- sdmTools::sdm_to_occ.pnts(env = envpres, occ = occ_train, algorithms = algorithms, predict_object = pocc)
+occ.pnts <- sdmLit::sdm_to_occ.pnts(env = envpres, occ = occ_train, algorithms = algorithms, predict_object = pocc)
 
-output.mod <- sdmTools::sdm_to_output.mods(env = envpres, algorithms = algorithms, predict_object = pocc, long = 'x', lat = 'y') 
+output.mod <- sdmLit::sdm_to_output.mods(env = envpres, algorithms = algorithms, predict_object = pocc, long = 'x', lat = 'y') 
 
 # Longitude is also commonly typed as 'lon', and Latitude as 'lat'.
 # To check how yours is called, I suggest running:
@@ -257,7 +257,7 @@ dev.new() ; dev.control('enable') ; dev.off()
 # WARNING: Before running this next section of the script, make sure nothing
 # is plotted and no devices are open with dev.list()
 
-aocc_svm <- sdmTools::accum.occ(sp.name = 'charinus',
+aocc_svm <- sdmLit::accum.occ(sp.name = 'charinus',
                      output.mod = output.mod[[1]], # The index 1 here refers to the algorithm index, if you followed the exact same syntax so far, it should be the same index as in the 'algorithms' object
                      occ.pnts = occ.pnts[[1]], # Same observation as above
                      null.mod = "hypergeom",
@@ -323,7 +323,7 @@ aocc_list <- list(aocc_svm, aocc_maxent, aocc_bioclim, aocc_domain)
 And then, you can compare the performance of each algorithm using the `comp.aocc` function:
 
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
-model_comp <- sdmTools::comp.accplot(mods = aocc_list,
+model_comp <- sdmLit::comp.accplot(mods = aocc_list,
                           nocc = length(occ_train),
                           ncells = raster::ncell(envpres),
                           sp.name = 'Charinus',
@@ -347,7 +347,7 @@ For this particular functions it is **extremely important** that both the name o
 
 Usage is as follows:
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
-freqE <- sdmTools::sdm_to_freqEnsemble(model = m_occ, preds =  pocc, species =  c('charinus'), threshold = 2)
+freqE <- sdmLit::sdm_to_freqEnsemble(model = m_occ, preds =  pocc, species =  c('charinus'), threshold = 2)
 
 # Argument threshold: which parameter to use as threshold for binarizing the predictions. The possible value can be between 1 to 10 for "sp=se", "max(se+sp)", "min(cost)", "minROCdist", "max(kappa)", "max(ppv+npv)", "ppv=npv", "max(NMI)", "max(ccr)", "prevalence" criteria, respectively.
 ```
@@ -355,7 +355,7 @@ freqE <- sdmTools::sdm_to_freqEnsemble(model = m_occ, preds =  pocc, species =  
 Which returns a RasterStack that can be plotted with this package using:
 
 ```{r eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
-freqPlot <- sdmTools::frequency_ensemble_plot(freqE)
+freqPlot <- sdmLit::frequency_ensemble_plot(freqE)
 
 freqPlot
 ```
