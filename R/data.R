@@ -1,8 +1,8 @@
 #' Congruence Map
 #'
-#' Map of bioclimatic congruence (congruence.grd) from \insertCite{morales-barberoInputMattersMatter2019a}{sdmTools}.
+#' Map of bioclimatic congruence (congruence.grd) from \insertCite{morales-barberoInputMattersMatter2019a}{sdmLit}.
 #'
-#' @format A RasterStack of global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim (\insertCite{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools} , \insertCite{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}), [CHELSA](www.chelsa-climate.org), and ocean databases [MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org):
+#' @format A RasterStack of global-scale bioclimatic congruence map to analyse environmental mismatches between recently updated bioclimatic databases [WorldClim v. 2](www.worldclim.org/version2),MERRAclim (\insertCite{c.vegaMERRAclimHighresolutionGlobal2017}{sdmLit} , \insertCite{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmLit}), [CHELSA](www.chelsa-climate.org), and ocean databases [MARSPEC](www.marspec.org) and [Bio-ORACLE v. 2.0](www.bio-oracle.org):
 #'  \describe{
 #'  \item{\code{class}}{RasterLayer}
 #'  \item{\code{dimensions}}{1080, 2160, 2332800  (nrow, ncol, ncell)}
@@ -16,9 +16,9 @@
 #' @source \url{https://datadryad.org/stash/dataset/doi:10.5061/dryad.6kv7k29/}
 #'
 #' @references
-#' \insertRef{morales-barberoInputMattersMatter2019a}{sdmTools}
+#' \insertRef{morales-barberoInputMattersMatter2019a}{sdmLit}
 #'
-#' \insertRef{c.vegaMERRAclimHighresolutionGlobal2017}{sdmTools}
+#' \insertRef{c.vegaMERRAclimHighresolutionGlobal2017}{sdmLit}
 #'
-#' \insertRef{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmTools}
+#' \insertRef{c.vegaMERRAclimHighresolutionGlobal2017a}{sdmLit}
 "congruence"

@@ -12,10 +12,10 @@ sdm_to_consistency(preds, layer)
 \item{layer}{Character or Interger. Layer ID to be used in plotting.}
 }
 \value{
-RasterStack with Consistency Map imposed on the original congruence map from \insertCite{morales-barberoInputMattersMatter2019a}{sdmTools}.
+RasterStack with Consistency Map imposed on the original congruence map from \insertCite{morales-barberoInputMattersMatter2019a}{sdmLit}.
 }
 \description{
-This function builds consistency maps from a set of environmental layers and suitability maps, following  \insertCite{morales-barberoInputMattersMatter2019a}{sdmTools} (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
+This function builds consistency maps from a set of environmental layers and suitability maps, following  \insertCite{morales-barberoInputMattersMatter2019a}{sdmLit} (Fig.4). The aim of this script is to automatize and make the process more easily reproducible. Moreover, it is intended to be easily implemented with objects from the sdm package.
 }
 \examples{
 \dontrun{
@@ -27,5 +27,5 @@ consMap <- sdm_to_consistency(preds, 1)
 }
 }
 \references{
-\insertRef{morales-barberoInputMattersMatter2019a}{sdmTools}
+\insertRef{morales-barberoInputMattersMatter2019a}{sdmLit}
 }

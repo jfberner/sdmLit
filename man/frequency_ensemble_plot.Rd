@@ -13,7 +13,7 @@ frequency_ensemble_plot(freq_object)
 A ggplot2 object.
 }
 \description{
-This function aims to reproduce the exact plotting theme and configurations as in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}. The function takes the output from sdm_frequency_ensemble() and plots it in those configurations. ggplot2 is used. Othewise the output is simply a rasterStack and can be plotted in any other preferred way.
+This function aims to reproduce the exact plotting theme and configurations as in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit}. The function takes the output from sdm_frequency_ensemble() and plots it in those configurations. ggplot2 is used. Othewise the output is simply a rasterStack and can be plotted in any other preferred way.
 }
 \examples{
 \dontrun{
@@ -27,5 +27,5 @@ teste <- sdm_to_freqEnsemble(model, preds, c('charinus'))
 frequency_ensemble_plot(teste) }
 }
 \references{
-\insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
+\insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit}
 }

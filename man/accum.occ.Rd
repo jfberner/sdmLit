@@ -23,7 +23,7 @@ accum.occ(sp.name, output.mod, occ.pnts, null.mod, conlev = 0, bios = 0)
 Data Frame with accumulation of occurrences.
 }
 \description{
-Function to evaluate Ecological Niche Models by the Accumulation of Occurrences of each algorithm \insertCite{jimenezLeavingAreaReceiving2020a}{sdmTools}.
+Function to evaluate Ecological Niche Models by the Accumulation of Occurrences of each algorithm \insertCite{jimenezLeavingAreaReceiving2020a}{sdmLit}.
 }
 \examples{
 \dontrun{
@@ -80,7 +80,7 @@ dev.print(png, file = "figs/aocc/svm_aocc_env.png",
 }
 }
 \references{
-\insertRef{jimenezLeavingAreaReceiving2020a}{sdmTools}
+\insertRef{jimenezLeavingAreaReceiving2020a}{sdmLit}
 }
 \author{
 Laura Jiménez

@@ -1,6 +1,6 @@
 #' Accumulation of Occurrences Plot
 #'
-#' Compare the occurrence-accumulation curves \insertCite{jimenezLeavingAreaReceiving2020a}{sdmTools} of different SDM/ENMs for a single species
+#' Compare the occurrence-accumulation curves \insertCite{jimenezLeavingAreaReceiving2020a}{sdmLit} of different SDM/ENMs for a single species
 #'
 #' @author Laura Jiménez
 #'
@@ -41,13 +41,13 @@
 #'
 #' ## AOcCs of models #####
 #' # Prepare the data to pass it onto the function:
-#' occ.pnts <- sdmTools::sdm_to_occ.pnts(env = envpres,
+#' occ.pnts <- sdmLit::sdm_to_occ.pnts(env = envpres,
 #'                            occ = occ_train,
 #'                            algorithms = c('svm', 'maxent', 'bioclim', 'domain'),
 #'                            # list of algorithms used in sdm::sdm()
 #'                            predict_object = pred_pres)
 #'
-#' output.mod <- sdmTools::sdm_to_output.mod(env = envpres,
+#' output.mod <- sdmLit::sdm_to_output.mod(env = envpres,
 #'                                 algorithms = c('svm', 'maxent', 'bioclim', 'domain'),
 #'                                 predict_object = pred_pres)
 #' # The accum.occ function is annoying and creates three different plots in three different devices.
@@ -85,7 +85,7 @@
 #'                           mods.names = c('svm', 'maxent', 'bioclim', 'domain'), alpha = 0.05)
 #' }
 #' @references
-#' \insertRef{jimenezLeavingAreaReceiving2020a}{sdmTools}
+#' \insertRef{jimenezLeavingAreaReceiving2020a}{sdmLit}
 #'
 comp.accplot <- function(mods,nocc,ncells,xrange=c(0,ncells),sp.name,mods.names,alpha){
   # number of models to compare

@@ -16,10 +16,10 @@ sdm_to_boyceIndex(preds, layer, occurrence, ...)
 \item{...}{additional arguments to be passed onto ecospat.boyce()}
 }
 \value{
-A list, and by default PEplot is plotted to the device. List contains three items: F.ratio, cor and HS. For more information please refer to \insertCite{hirzelEvaluatingAbilityHabitat2006}{sdmTools} or to the ecospat.boyce() help (linked below).
+A list, and by default PEplot is plotted to the device. List contains three items: F.ratio, cor and HS. For more information please refer to \insertCite{hirzelEvaluatingAbilityHabitat2006}{sdmLit} or to the ecospat.boyce() help (linked below).
 }
 \description{
-This function simply converts the output from the sdm package to the Boyce Index \insertCite{hirzelEvaluatingAbilityHabitat2006}{sdmTools} using the function from the ecospat package.
+This function simply converts the output from the sdm package to the Boyce Index \insertCite{hirzelEvaluatingAbilityHabitat2006}{sdmLit} using the function from the ecospat package.
 }
 \examples{
 occ_test <- rgdal::readOGR('data/processed/shapefiles/test.shp')
@@ -31,7 +31,7 @@ teste <- sdm_to_boyceIndex(pred_pres, mean(2:5), occurrence[,2:3])
 
 }
 \references{
-\insertRef{hirzelEvaluatingAbilityHabitat2006}{sdmTools}
+\insertRef{hirzelEvaluatingAbilityHabitat2006}{sdmLit}
 }
 \seealso{
 \code{\link[ecospat:ecospat.boyce]{ecospat::ecospat.boyce()}} which this function wraps.

@@ -23,10 +23,10 @@ you have to save (and later read it) it with the terra package to retain layer n
 \item{threshold}{Interger. Which parameter to use as threshold for binarizing the predictions. The possible value can be between 1 to 10 for "sp=se", "max(se+sp)", "min(cost)", "minROCdist", "max(kappa)", "max(ppv+npv)", "ppv=npv", "max(NMI)", "max(ccr)", "prevalence" criteria, respectively. For more information, see \code{\link[sdm:evaluates]{sdm::getEvaluation()}}.}
 }
 \value{
-A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools} for details.
+A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit} or \insertCite{dasilveiraFutureClimateChange2021}{sdmLit} for details.
 }
 \description{
-This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools}.
+This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit} or \insertCite{dasilveiraFutureClimateChange2021}{sdmLit}.
 }
 \examples{
 \dontrun{
@@ -38,9 +38,9 @@ preds <- raster::stack(pocc)
 teste <- sdm_to_freqEnsemble(model, preds, c('charinus'), 1) }
 }
 \references{
-\insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
+\insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit}
 
-\insertRef{dasilveiraFutureClimateChange2021}{sdmTools}
+\insertRef{dasilveiraFutureClimateChange2021}{sdmLit}
 }
 \seealso{
 \code{\link[sdm:evaluates]{sdm::getEvaluation()}}

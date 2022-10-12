@@ -1,6 +1,6 @@
 #' Frequency Ensemble from sdm::sdm() and sdm::predict()
 #'
-#'  This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools}.
+#'  This function reproduces the methods from Sobral-Souza and Prasniewski, in which ensembling by the frequency among model predictions is made. For more information please consult the literature in \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit} or \insertCite{dasilveiraFutureClimateChange2021}{sdmLit}.
 #'
 #' @param model Model object as output from sdm() function or written/read with sdm::read.sdm().
 #' @param preds Prediction Object Output, with two observations: first, for it to have species names and
@@ -15,7 +15,7 @@
 #'
 #' @param threshold Interger. Which parameter to use as threshold for binarizing the predictions. The possible value can be between 1 to 10 for "sp=se", "max(se+sp)", "min(cost)", "minROCdist", "max(kappa)", "max(ppv+npv)", "ppv=npv", "max(NMI)", "max(ccr)", "prevalence" criteria, respectively. For more information, see [sdm::getEvaluation()].
 #'
-#' @return A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools} for details.
+#' @return A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit} or \insertCite{dasilveiraFutureClimateChange2021}{sdmLit} for details.
 #' @export
 #'
 #' @import tidyverse
@@ -35,9 +35,9 @@
 #' preds <- raster::stack(pocc)
 #' teste <- sdm_to_freqEnsemble(model, preds, c('charinus'), 1) }
 #' @references
-#' \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
+#' \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmLit}
 #'
-#' \insertRef{dasilveiraFutureClimateChange2021}{sdmTools}
+#' \insertRef{dasilveiraFutureClimateChange2021}{sdmLit}
 #'
 
 sdm_to_freqEnsemble <- function(model, preds, species, threshold){
