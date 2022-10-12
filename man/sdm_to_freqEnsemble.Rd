@@ -4,7 +4,7 @@
 \alias{sdm_to_freqEnsemble}
 \title{Frequency Ensemble from sdm::sdm() and sdm::predict()}
 \usage{
-sdm_to_freqEnsemble(model, preds, species)
+sdm_to_freqEnsemble(model, preds, species, threshold)
 }
 \arguments{
 \item{model}{Model object as output from sdm() function or written/read with sdm::read.sdm().}
@@ -19,6 +19,8 @@ you have to save (and later read it) it with the terra package to retain layer n
 \verb{                   filename = 'data/processed/final-model-build/predictions/predictions.present-terraStd.tif', overwrite = TRUE)}}
 
 \item{species}{Character. Names of the species as they appear in layer names.}
+
+\item{threshold}{Interger. Which parameter to use as threshold for binarizing the predictions. The possible value can be between 1 to 10 for "sp=se", "max(se+sp)", "min(cost)", "minROCdist", "max(kappa)", "max(ppv+npv)", "ppv=npv", "max(NMI)", "max(ccr)", "prevalence" criteria, respectively. For more information, see \code{\link[sdm:evaluates]{sdm::getEvaluation()}}.}
 }
 \value{
 A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools} for details.
@@ -39,4 +41,7 @@ teste <- sdm_to_freqEnsemble(model, preds, c('charinus')) }
 \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
 
 \insertRef{dasilveiraFutureClimateChange2021}{sdmTools}
+}
+\seealso{
+\code{\link[sdm:evaluates]{sdm::getEvaluation()}}
 }

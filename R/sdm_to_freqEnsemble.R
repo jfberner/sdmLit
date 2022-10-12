@@ -13,6 +13,8 @@
 #'  ```                   filename = 'data/processed/final-model-build/predictions/predictions.present-terraStd.tif', overwrite = TRUE)```
 #' @param species Character. Names of the species as they appear in layer names.
 #'
+#' @param threshold Interger. Which parameter to use as threshold for binarizing the predictions. The possible value can be between 1 to 10 for "sp=se", "max(se+sp)", "min(cost)", "minROCdist", "max(kappa)", "max(ppv+npv)", "ppv=npv", "max(NMI)", "max(ccr)", "prevalence" criteria, respectively. For more information, see [sdm::getEvaluation()].
+#'
 #' @return A RasterStack with one layer, ensembled all models present in 'model' and 'preds' by frequency of presences as of threshold max(sp+se). See  \insertCite{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools} or \insertCite{dasilveiraFutureClimateChange2021}{sdmTools} for details.
 #' @export
 #'
@@ -22,6 +24,8 @@
 #' @import ggplot2
 #' @import stringr
 #' @importFrom Rdpack reprompt
+#'
+#' @seealso [sdm::getEvaluation()]
 #'
 #' @examples \dontrun{
 #' ## DO NOT RUN
@@ -35,9 +39,9 @@
 #'
 #' \insertRef{dasilveiraFutureClimateChange2021}{sdmTools}
 #'
-#'
-sdm_to_freqEnsemble <- function(model, preds, species){
-  evaluation <- sdm::getEvaluation(x = model, p = preds, wtest = 'test.dep', species = species, index = T, stat = c('AUC', 'COR', 'TSS', 'threshold'), opt = 2) # opt = 2 = max(se + sp)
+
+sdm_to_freqEnsemble <- function(model, preds, species, threshold){
+  evaluation <- sdm::getEvaluation(x = model, p = preds, wtest = 'test.dep', species = species, index = T, stat = c('AUC', 'COR', 'TSS', 'threshold'), opt = threshold) # opt = 2 = max(se + sp)
 
   eval <- cbind(evaluation, model@run.info['species'], model@run.info['method'])
 
