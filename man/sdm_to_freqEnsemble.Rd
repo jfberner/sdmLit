@@ -33,9 +33,9 @@ This function reproduces the methods from Sobral-Souza and Prasniewski, in which
 ## DO NOT RUN
 library(raster);library(sdm);library(dplyr);library(ggplot2)
 model <- sdm::read.sdm("data/processed/model-build/model-object/model.sdm")
-pocc <- terra::rast('data/processed/model-build/predictions/predictions.present-all-algorithms.tif')
+pocc <- terra::rast('data/processed/model-build/predictions/predictions.present-terraStd.tif')
 preds <- raster::stack(pocc)
-teste <- sdm_to_freqEnsemble(model, preds, c('charinus')) }
+teste <- sdm_to_freqEnsemble(model, preds, c('charinus'), 1) }
 }
 \references{
 \insertRef{sobral-souzaSpeciesExtinctionRisk2015}{sdmTools}
