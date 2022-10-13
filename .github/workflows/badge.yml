@@ -1,0 +1,7 @@
+An object constisting on conventional commit types with either a string or a object based on scopes
+types:
+  fix:
+    ui: 'My UI Fix Label'
+    api: 'API Fixed!'
+    default: 'There was no scope attached'
+  feat: 'I cover all features'
